@@ -67,7 +67,7 @@ $(eval $(call NEXT_PATH_ELEMENT))
 # It's really a very simple if else chain, if you squint enough,
 # but the makefile syntax makes it very verbose.
 # If we are in a subfolder of keyboards
-# 
+#
 # *** No longer needed **
 #
 # ifeq ($(CURRENT_PATH_ELEMENT),keyboards)
@@ -353,7 +353,7 @@ define PARSE_KEYBOARD
 
     LAYOUT_KEYMAPS :=
     $$(foreach LAYOUT,$$(KEYBOARD_LAYOUTS),$$(eval LAYOUT_KEYMAPS += $$(notdir $$(patsubst %/.,%,$$(wildcard $(ROOT_DIR)/layouts/*/$$(LAYOUT)/*/.)))))
-    
+
     KEYMAPS := $$(sort $$(KEYMAPS) $$(LAYOUT_KEYMAPS))
 
     # if the rule after removing the start of it is empty (we haven't specified a kemap or target)
@@ -604,3 +604,18 @@ BUILD_DATE := NA
 endif
 
 include $(ROOT_DIR)/testlist.mk
+
+.PHONY: docker-build
+docker-build:
+	 docker build -t qmk .
+
+.PHONY: build-flash
+build-flash: build flash
+
+.PHONY: build
+build:
+	 docker run -e keymap=110y -e keyboard=ergodox_ez --rm -v $(shell pwd):/qmk:rw qmk
+
+.PHONY: flash
+flash:
+	 teensy_loader_cli -v -mmcu=atmega32u4 -w ergodox_ez_110y.hex
