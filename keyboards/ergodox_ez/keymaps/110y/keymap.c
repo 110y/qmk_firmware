@@ -1,3 +1,4 @@
+// https://github.com/qmk/qmk_firmware/blob/master/docs/keycodes.md
 #include QMK_KEYBOARD_H
 #include "debug.h"
 #include "action_layer.h"
@@ -20,10 +21,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |  Esc   |   1  |   2  |   3  |   4  |   5  |      |           |      |   6  |   7  |   8  |   9  |   0  |  BSPC  |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |  Tab   |   Q  |   W  |   E  |   R  |   T  |   (  |           |  {   |   Y  |   U  |   I  |   O  |   P  |   \    |
+ * |  Tab   |   Q  |   W  |   E  |   R  |   T  |      |           |  {   |   Y  |   U  |   I  |   O  |   P  |   \    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | LCtrl  |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |   '    |
- * |--------+------+------+------+------+------|   )  |           |  }   |------+------+------+------+------+--------|
+ * |--------+------+------+------+------+------|      |           |  }   |------+------+------+------+------+--------|
  * |   =    |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  |   -    |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |      |      |      |  Opt |  Cmd |                                       | Cmd  | Left | Down |  Up  |Right |
@@ -39,9 +40,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [BASE] = LAYOUT_ergodox(
         KC_ESC,   KC_1,  KC_2,  KC_3,    KC_4,    KC_5, KC_NO,
-        KC_TAB,   KC_Q,  KC_W,  KC_E,    KC_R,    KC_T, KC_LPRN,
+        KC_TAB,   KC_Q,  KC_W,  KC_E,    KC_R,    KC_T, LGUI(LSFT(KC_RBRC)),
         KC_LCTRL, KC_A,  KC_S,  KC_D,    KC_F,    KC_G,
-        KC_EQL,   KC_Z,  KC_X,  KC_C,    KC_V,    KC_B, KC_RPRN,
+        KC_EQL,   KC_Z,  KC_X,  KC_C,    KC_V,    KC_B, LGUI(LSFT(KC_LBRC)),
         KC_NO,    KC_NO, KC_NO, KC_LALT, KC_LGUI,
 
                     TG(MDIA), KC_NO,
