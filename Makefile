@@ -646,3 +646,18 @@ BUILD_DATE := NA
 endif
 
 include $(ROOT_DIR)/testlist.mk
+
+.PHONY: docker-build
+docker-build:
+	 docker build -t qmk .
+
+.PHONY: build-flash
+build-flash: build flash
+
+.PHONY: build
+build:
+	 docker run -e keymap=110y -e keyboard=ergodox_ez --rm -v $(shell pwd):/qmk:rw qmk
+
+.PHONY: flash
+flash:
+	 teensy_loader_cli -v -mmcu=atmega32u4 -w ergodox_ez_110y.hex
