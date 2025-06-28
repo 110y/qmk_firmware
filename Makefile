@@ -482,7 +482,7 @@ endif
 # Extra targets for formatting and/or pytest, running within the qmk/qmk_cli container to match GHA.
 CONTAINER_PREAMBLE := export HOME="/tmp"; export PATH="/tmp/.local/bin:\$$PATH"; python3 -m pip install --upgrade pip; python3 -m pip install -r requirements-dev.txt
 
-include $(ROOT_DIR)/testlist.mk
+# include $(ROOT_DIR)/testlist.mk
 
 .PHONY: format-core
 format-core:
