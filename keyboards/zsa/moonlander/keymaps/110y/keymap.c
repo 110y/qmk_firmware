@@ -27,6 +27,7 @@ enum layers {
 
 enum custom_keycodes {
     VRSN = SAFE_RANGE,
+    CTRL_OPT_SHIFT_Y,
 };
 
 // clang-format off
@@ -36,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_NO,               KC_LCBR, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
         KC_LCTL,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_NO,               KC_NO,   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_EQL,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
-        KC_LSFT,  KC_NO,   KC_NO,   KC_LALT, KC_LGUI, LALT_T(KC_APP),               RCTL_T(KC_ESC),   KC_RGUI, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
+        KC_LSFT,  KC_NO,   KC_NO,   KC_LALT, KC_LGUI, LALT_T(KC_APP),               CTRL_OPT_SHIFT_Y, KC_RGUI, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
                                         MO(SYMB), KC_SPACE, KC_LNG2,                KC_LNG1, KC_ENT,  KC_RSFT
     ),
 
@@ -102,6 +103,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         switch (keycode) {
         case VRSN:
             SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
+            return false;
+        case CTRL_OPT_SHIFT_Y:
+            register_code(KC_LCTL);
+            register_code(KC_LALT);
+            register_code(KC_LSFT);
+            register_code(KC_Y);
+            unregister_code(KC_Y);
+            unregister_code(KC_LSFT);
+            unregister_code(KC_LALT);
+            unregister_code(KC_LCTL);
             return false;
         }
     }
