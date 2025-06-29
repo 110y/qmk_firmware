@@ -515,4 +515,4 @@ flash:
 
 .PHONY: flash-moonlander
 flash-moonlander:
-	 make moonlander:110y:flash
+	 LDFLAGS="" make moonlander:110y:flash
