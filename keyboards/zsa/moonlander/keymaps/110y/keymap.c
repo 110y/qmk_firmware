@@ -61,39 +61,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    /* disable indicator LEDs */
-
-    /* ML_LED_1(false); */
-    /* ML_LED_2(false); */
-    /* ML_LED_3(false); */
-    /* ML_LED_4(false); */
-    /* ML_LED_5(false); */
-    /* ML_LED_6(false); */
-
-    /* switch (get_highest_layer(state)) { */
-    /*     case 1: */
-    /*         ML_LED_1(1); */
-    /*         ML_LED_4(1); */
-    /*         break; */
-    /*     case 2: */
-    /*         ML_LED_2(1); */
-    /*         ML_LED_5(1); */
-    /*         break; */
-    /*     case 3: */
-    /*         ML_LED_3(1); */
-    /*         break; */
-    /*     case 4: */
-    /*         ML_LED_4(1); */
-    /*         break; */
-    /*     case 5: */
-    /*         ML_LED_5(1); */
-    /*         break; */
-    /*     case 6: */
-    /*         ML_LED_6(1); */
-    /*         break; */
-    /*     default: */
-    /*         break; */
-    /* } */
+    /* disable all indicator LEDs */
+    ML_LED_1(false);
+    ML_LED_2(false);
+    ML_LED_3(false);
+    ML_LED_4(false);
+    ML_LED_5(false);
+    ML_LED_6(false);
 
     return state;
 }

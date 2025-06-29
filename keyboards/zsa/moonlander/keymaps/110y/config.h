@@ -19,3 +19,6 @@
 #pragma once
 
 // #define ORYX_CONFIGURATOR
+
+// Take full control of the indicator LEDs
+#define MOONLANDER_USER_LEDS
